@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PopupModal from "../PopupModal/PopupModal.component";
 import Container from "./Header.style";
 
@@ -12,9 +13,9 @@ function Header(): JSX.Element {
     <Container>
       {isActiveModal && <PopupModal setIsActiveModal={setIsActiveModal} />}
       <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 justify-content-between border-bottom">
-        <a className="navbar-brand" href="#">
-          Logo
-        </a>
+        <Link className="navbar-brand" to="/">
+          APP LOGO
+        </Link>
 
         <b>Social Media App</b>
 
