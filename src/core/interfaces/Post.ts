@@ -7,4 +7,6 @@ export interface Post {
 
 export interface PostsSliceState {
     posts: Post[],
+    activePost: Post | null,
+    isLoading: boolean
 }

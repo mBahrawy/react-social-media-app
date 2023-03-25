@@ -1,10 +1,9 @@
 import Container from './PostsList.style'
 import { Post } from '@/core/interfaces/Post'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppState } from '@/core/interfaces/Redux'
 
 import useOnInit from '@/core/hooks/useOnInit'
-import { useDispatch } from 'react-redux'
 import { getPosts } from '@/core/store/reducers/posts-reducer'
 import PostCard from '../PostCard/PostCard.component'
 
@@ -15,7 +14,7 @@ function PostsList(props: PostsListProps): JSX.Element {
   const { posts } = useSelector((state: AppState) => state.posts)
 
   useOnInit(() => {
-    dispatch(getPosts())
+    dispatch(getPosts(""))
   })
 
   return (

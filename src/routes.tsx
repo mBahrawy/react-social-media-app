@@ -1,17 +1,26 @@
-import { useRoutes } from "react-router-dom";
-import { lazy } from "react";
+import { useRoutes } from 'react-router-dom'
+import { lazy } from 'react'
 
-const Home = lazy(() => import("@/modules/Home/Home.component"));
+const Home = lazy(() => import('@/modules/Home/Home.component'))
+const Post = lazy(() => import('@/modules/SinglePost/SinglePost.component'))
 
 const Routes = () => {
   const routes = useRoutes([
     {
-      path: "",
+      path: '',
       element: <Home />,
     },
-  ]);
+    {
+      path: '/:id',
+      element: <Post />,
+    },
+    {
+      path: '*',
+      element: <h1>404</h1>,
+    },
+  ])
 
-  return routes;
-};
+  return routes
+}
 
-export default Routes;
+export default Routes

@@ -15,3 +15,7 @@ export interface AsyncDispatchResponse {
 export interface AppState {
   posts: PostsSliceState
 }
+
+export type FetchError = {
+  message: string
+}
