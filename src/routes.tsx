@@ -1,13 +1,13 @@
 import { useRoutes } from "react-router-dom";
 import { lazy } from "react";
 
-// const Module = lazy(() => import("@/modules/Module/Module.component"));
+const Home = lazy(() => import("@/modules/Home/Home.component"));
 
 const Routes = () => {
   const routes = useRoutes([
     {
       path: "",
-      element: <div>Module screen here</div>,
+      element: <Home />,
     },
   ]);
 
