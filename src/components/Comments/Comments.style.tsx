@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Container = styled.section`
   textarea {
@@ -7,6 +7,6 @@ const Container = styled.section`
   .card-footer {
     background-color: #f8f9fa;
   }
-`
+`;
 
-export default Container
+export default Container;

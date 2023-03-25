@@ -7,7 +7,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --fix  . --ext .js --ext .ts",
+    "lint": "eslint --fix  . --ext .js --ext .ts --ext .tsx",
     "grc": "npx generate-react-cli component",
     "grm": "npx generate-react-cli component --type=module"
   },

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Container = styled.section`
   position: fixed;
@@ -24,8 +24,7 @@ const Container = styled.section`
     transform: translate(-50%, -50%);
     background-color: rgb(250 250 250);
     border-radius: 10px;
-    box-shadow: 0px 2px 17px -4px rgba(0, 0, 0, 0.3)
-
+    box-shadow: 0px 2px 17px -4px rgba(0, 0, 0, 0.3);
   }
   .back-drop {
     position: absolute;
@@ -35,6 +34,6 @@ const Container = styled.section`
     top: 0%;
     left: 0%;
   }
-`
+`;
 
-export default Container
+export default Container;

@@ -1,12 +1,12 @@
-import Container from './Home.style'
-import PostsList from '@/components/PostsList/PostsList.component'
+import PostsList from "@/components/PostsList/PostsList.component";
+import Container from "./Home.style";
 
-const Home = (): JSX.Element => {
+function Home(): JSX.Element {
   return (
     <Container>
       <PostsList />
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;

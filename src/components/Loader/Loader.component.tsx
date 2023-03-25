@@ -1,16 +1,16 @@
-import Container from './Loader.style'
-import Spinner from '@/assets/images/Spinner.svg'
+import Spinner from "@/assets/images/Spinner.svg";
+import Container from "./Loader.style";
 
 type LoaderProps = {
-  id?: string
-}
+  id?: string;
+};
 
-function Loader({ id = '' }: LoaderProps): JSX.Element {
+function Loader({ id = "" }: LoaderProps): JSX.Element {
   return (
     <Container id={id}>
-      <img src={Spinner} alt='' />
+      <img src={Spinner} alt="" />
     </Container>
-  )
+  );
 }
 
-export default Loader
+export default Loader;
