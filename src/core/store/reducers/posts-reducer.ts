@@ -5,7 +5,7 @@ import HttpService from "@/core/services/http-service";
 import { FetchError } from "@/core/interfaces/Redux";
 import { Comment } from "@/core/interfaces/Comment";
 
-const initialState: PostsSliceState = {
+export const initialState: PostsSliceState = {
   posts: [],
   activePost: null,
   activePostComments: null,
