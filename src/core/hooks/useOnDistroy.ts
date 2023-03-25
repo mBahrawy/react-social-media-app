@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useOnDistroy = (callback: () => any) => {
+const useOnDistroy = (callback: () => void) => {
   useEffect(() => {
     return () => {
       return callback && callback();

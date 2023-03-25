@@ -57,6 +57,21 @@ export const getPostComments = createAsyncThunk<Comment[], string, { rejectValue
     }
   }
 )
+export const createPost = createAsyncThunk<Post, unknown, { rejectValue: FetchError }>(
+  'Post/create',
+  async (data, thunkAPI) => {
+    try {
+      const { postRequest } = new HttpService()
+      const res = await postRequest(`/posts/`, data)
+      return res as Post
+    } catch (error: unknown) {
+      console.log(error)
+      return thunkAPI.rejectWithValue({
+        message: `Failed to create post.`,
+      })
+    }
+  }
+)
 
 export const postSlice = createSlice({
   name: 'Posts',
@@ -104,6 +119,17 @@ export const postSlice = createSlice({
         return { ...state, isLoading: true }
       })
       .addCase(getPostComments.rejected, (state: PostsSliceState) => {
+        return { ...state, isLoading: false }
+      })
+
+      // For creating a post
+      .addCase(createPost.fulfilled, (state: PostsSliceState, action: PayloadAction<Post>) => {
+        return { ...state, posts: [action.payload,...state.posts]  ,isLoading: false }
+      })
+      .addCase(createPost.pending, (state: PostsSliceState) => {
+        return { ...state, isLoading: true }
+      })
+      .addCase(createPost.rejected, (state: PostsSliceState) => {
         return { ...state, isLoading: false }
       })
   },

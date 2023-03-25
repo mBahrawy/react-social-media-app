@@ -43,13 +43,10 @@ const SinglePost = (): JSX.Element => {
                   />
                 </div>
 
-          {comments && <Comments data={comments} />}
-
+                {comments && <Comments data={comments} />}
               </div>
             </div>
           </div>
-
-
         </Container>
       )}
     </>
