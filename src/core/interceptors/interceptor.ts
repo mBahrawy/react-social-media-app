@@ -24,6 +24,13 @@ http.interceptors.response.use(
     const errorMsg = `Error Code: ${error.response?.status},  Message: ${error.response?.data}`;
     // eslint-disable-next-line no-console
     console.log(errorMsg);
+
+    const statusCode: number = error.response?.status as unknown as number;
+
+    if ([404].includes(statusCode)) {
+      window.location.href = `/404`;
+    }
+
     return Promise.reject(error);
   }
 );
