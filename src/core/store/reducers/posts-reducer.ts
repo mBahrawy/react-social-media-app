@@ -2,11 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Post, PostsSliceState } from '@/core/interfaces/Post'
 import HttpService from '@/core/services/http-service'
 import { FetchError } from '@/core/interfaces/Redux'
+import { Comment } from '@/core/interfaces/Comment'
 
 const initialState: PostsSliceState = {
   posts: [],
   activePost: null,
-  isLoading: false
+  activePostComments: null,
+  isLoading: false,
 }
 
 export const getPosts = createAsyncThunk<Post[], '', { rejectValue: FetchError }>(
@@ -40,6 +42,21 @@ export const getPost = createAsyncThunk<Post, string, { rejectValue: FetchError 
     }
   }
 )
+export const getPostComments = createAsyncThunk<Comment[], string, { rejectValue: FetchError }>(
+  'Post/comments',
+  async (id, thunkAPI) => {
+    try {
+      const { getRequest } = new HttpService()
+      const res = await getRequest(`/posts/${id}/comments`)
+      return res as Comment[]
+    } catch (error: unknown) {
+      console.log(error)
+      return thunkAPI.rejectWithValue({
+        message: `Failed to fetch comments of post with id ${id}.`,
+      })
+    }
+  }
+)
 
 export const postSlice = createSlice({
   name: 'Posts',
@@ -48,13 +65,13 @@ export const postSlice = createSlice({
     setActivePost: (state: PostsSliceState, action: PayloadAction<Post | null>) => {
       return {
         ...state,
-        activePost: action.payload
+        activePost: action.payload,
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
-    // For all posts
+      // For all posts
       .addCase(getPosts.fulfilled, (state: PostsSliceState, action: PayloadAction<Post[]>) => {
         return { ...state, posts: action.payload, isLoading: false }
       })
@@ -75,7 +92,21 @@ export const postSlice = createSlice({
       .addCase(getPost.rejected, (state: PostsSliceState) => {
         return { ...state, isLoading: false }
       })
+
+      // For single post comments
+      .addCase(
+        getPostComments.fulfilled,
+        (state: PostsSliceState, action: PayloadAction<Comment[]>) => {
+          return { ...state, activePostComments: action.payload, isLoading: false }
+        }
+      )
+      .addCase(getPostComments.pending, (state: PostsSliceState) => {
+        return { ...state, isLoading: true }
+      })
+      .addCase(getPostComments.rejected, (state: PostsSliceState) => {
+        return { ...state, isLoading: false }
+      })
   },
 })
-export const { setActivePost } = postSlice.actions;
+export const { setActivePost } = postSlice.actions
 export default postSlice.reducer

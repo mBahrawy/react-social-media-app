@@ -1,3 +1,5 @@
+import { Comment } from "./Comment";
+
 export interface Post {
     userId: number;
     id:     number;
@@ -8,5 +10,6 @@ export interface Post {
 export interface PostsSliceState {
     posts: Post[],
     activePost: Post | null,
+    activePostComments: Comment[] | null,
     isLoading: boolean
 }

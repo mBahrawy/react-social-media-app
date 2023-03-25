@@ -2,28 +2,29 @@ import useOnDistroy from '@/core/hooks/useOnDistroy'
 import Container from './SinglePost.style'
 import useOnInit from '@/core/hooks/useOnInit'
 import { Post } from '@/core/interfaces/Post'
-import { getPost, setActivePost } from '@/core/store/reducers/posts-reducer'
+import { getPost, getPostComments, setActivePost } from '@/core/store/reducers/posts-reducer'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import { AppState } from '@/core/interfaces/Redux'
+import Comments from '@/components/Comments/Comments.component'
 
 const SinglePost = (): JSX.Element => {
   const dispatch = useDispatch()
   const { id } = useParams()
-  const [post, setPost] = useState<Post | null>(null)
+  const { activePost: post, activePostComments: comments } = useSelector(
+    (state: AppState) => state.posts
+  )
 
   useOnInit(() => {
-    id &&
-      dispatch(getPost(id)).then((res) => {
-        setPost(res.payload as Post)
-      })
+    id && dispatch(getPost(id))
+    id && dispatch(getPostComments(id))
   })
 
-
+  // Remove post data for updating the breadcrumb on component distroy
   useOnDistroy(() => {
     dispatch(setActivePost(null))
   })
-
 
   return (
     <>
@@ -41,9 +42,14 @@ const SinglePost = (): JSX.Element => {
                     className='img-fluid mb-3 w-100'
                   />
                 </div>
+
+          {comments && <Comments data={comments} />}
+
               </div>
             </div>
           </div>
+
+
         </Container>
       )}
     </>
