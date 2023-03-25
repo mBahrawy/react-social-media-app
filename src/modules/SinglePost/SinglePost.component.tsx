@@ -1,14 +1,15 @@
 import useOnDistroy from "@/core/hooks/useOnDistroy";
 import useOnInit from "@/core/hooks/useOnInit";
 import { getPost, getPostComments, setActivePost } from "@/core/store/reducers/posts-reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { AppState } from "@/core/interfaces/Redux";
 import Comments from "@/components/Comments/Comments.component";
+import { useAppDispatch } from "@/core/store/store";
 import Container from "./SinglePost.style";
 
 function SinglePost(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams();
   const { activePost: post, activePostComments: comments } = useSelector((state: AppState) => state.posts);
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import PopupModal from "../PopupModal/PopupModal.component";
+import CreatePostForm from "../CreatePostForm/CreatePostForm.component";
 import Container from "./Header.style";
 
 function Header(): JSX.Element {
@@ -11,7 +11,7 @@ function Header(): JSX.Element {
 
   return (
     <Container>
-      {isActiveModal && <PopupModal setIsActiveModal={setIsActiveModal} />}
+      {isActiveModal && <CreatePostForm setIsActiveModal={setIsActiveModal} />}
       <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 justify-content-between border-bottom">
         <Link className="navbar-brand" to="/">
           APP LOGO

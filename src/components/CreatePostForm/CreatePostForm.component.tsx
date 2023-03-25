@@ -1,13 +1,12 @@
-import { AppDispatch } from "@/core/store/store";
+import { useAppDispatch } from "@/core/store/store";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { createPost } from "@/core/store/reducers/posts-reducer";
-import Container from "./PopupModal.style";
+import Container from "./CreatePostForm.style";
 import ReactPortal from "../ReactPortal/ReactPortal.component";
 
-type PopupModalProps = {
+type CreatePostFormProps = {
   setIsActiveModal: (state: boolean) => void;
 };
 
@@ -29,8 +28,8 @@ const defaultValues: Inputs = {
   userId: 1,
 };
 
-function PopupModal({ setIsActiveModal }: PopupModalProps): JSX.Element {
-  const dispatch = useDispatch<AppDispatch>();
+function CreatePostForm({ setIsActiveModal }: CreatePostFormProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -65,8 +64,11 @@ function PopupModal({ setIsActiveModal }: PopupModalProps): JSX.Element {
                   className={`form-control ${!!errors.title?.message && "is-invalid"}`}
                   placeholder="Post title"
                   {...register("title")}
+                  data-testid="title-input"
                 />
-                <div className="invalid-feedback">{errors.title?.message}</div>
+                <div data-testid="title-error" className="invalid-feedback">
+                  {errors.title?.message}
+                </div>
               </div>
               <div className="form-group mb-3">
                 <label>Post body</label>
@@ -75,8 +77,11 @@ function PopupModal({ setIsActiveModal }: PopupModalProps): JSX.Element {
                   rows={4}
                   placeholder="Post body"
                   {...register("body")}
+                  data-testid="body-input"
                 />
-                <div className="invalid-feedback">{errors.body?.message}</div>
+                <div data-testid="body-error" className="invalid-feedback">
+                  {errors.body?.message}
+                </div>
               </div>
             </div>
 
@@ -97,4 +102,4 @@ function PopupModal({ setIsActiveModal }: PopupModalProps): JSX.Element {
   );
 }
 
-export default PopupModal;
+export default CreatePostForm;
