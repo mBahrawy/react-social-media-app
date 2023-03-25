@@ -1,21 +1,21 @@
 import { PostsSliceState } from "./Post";
 
 export interface AsyncDispatchResponse {
-    type: string;
-    payload: unknown;
-    meta: Meta;
-  }
+  type: string;
+  payload: unknown;
+  meta: Meta;
+}
 
-  export interface Meta {
+export interface Meta {
   arg: FormData;
   requestId: string;
   requestStatus: string;
 }
 
 export interface AppState {
-  posts: PostsSliceState
+  posts: PostsSliceState;
 }
 
 export type FetchError = {
-  message: string
-}
+  message: string;
+};
