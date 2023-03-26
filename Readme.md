@@ -28,6 +28,7 @@ powerd by Vites, Js-Dom for Frontend Unit testing
 - Axios
 - Redux
 - Redux tool kit
+- generate-react-cli
 
 ## Libraries for testing
 - Vitest
