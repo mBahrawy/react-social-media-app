@@ -15,7 +15,7 @@ powerd by Vites, Js-Dom for Frontend Unit testing
 - Run tests with command: `npm run test`
 
 ### Linting and formatting app, check for formatting errors with CLI
-- Run tests with command: `npm run Lint`
+- Run tests with command: `npm run lint`
 
 ### Building the app for production
 1. Run the app with command: `npm run build`
